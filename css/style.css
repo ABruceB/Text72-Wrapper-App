@@ -1,0 +1,6 @@
+#rawTextEntry {
+    width: 60%;
+    height: 250px;
+    font-family: monospace;
+    white-space: pre; /* respect inserted \n */
+  }
