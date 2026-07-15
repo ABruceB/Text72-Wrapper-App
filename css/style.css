@@ -1,18 +1,31 @@
-#rawTextEntry {
+body {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
+  #rawTextEntry {
     height: 250px;
     font-family: monospace;
+    width: 100%;
+    max-width: 800px;
     white-space: pre-wrap; /* no scrolling in text area */
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border: 1px solid #444;
   }
   .container {
     font-family: Arial, sans-serif;
     margin: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   #submitButton {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #666;
   }
   

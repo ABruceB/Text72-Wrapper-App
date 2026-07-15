@@ -4,7 +4,7 @@ const rawText = document.getElementById("rawTextEntry");
 const submitButton = document.getElementById("submitButton");
 
 submitButton.addEventListener("click", () => {
-  console.log(wrap72(rawText.value));
+  wrap72(rawText.value);
   copyToClipboard();
 
 });
@@ -68,4 +68,9 @@ function copyToClipboard() {
   textArea.select();
   document.execCommand("copy");
   console.log("Text copied to clipboard!");
+}
+
+function resetText() {
+  const textArea = document.getElementById("rawTextEntry");
+  textArea.value = "";
 }
