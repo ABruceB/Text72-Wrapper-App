@@ -10,17 +10,20 @@ submitButton.addEventListener("click", () => {
 function wrap72(text) {
   const MAX_COL = 72;
 
-  // Split into user-created lines (paragraphs)
+  // maintains use created new lines
   const paragraphs = text.replace(/\r\n/g, "\n").split("\n");
 
   const wrapped = paragraphs.map(par => {
-    // Preserve blank lines exactly
+    // maintains empty lines
     if (par.trim().length === 0) return "";
 
-    const tokens = par.split(/(\s+)/); // words + whitespace
+    //spits the paragraphs into array of strings
+    const tokens = par.split(/(\s+)/); 
+    
     let lines = [];
     let line = "";
 
+    //loops through the paragraphs
     for (let tok of tokens) {
       if (tok === "") continue;
 
