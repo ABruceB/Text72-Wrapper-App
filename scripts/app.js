@@ -1,38 +1,53 @@
-console.log("SAP Companion App loaded.");
+console.log("Text Wrap 72 loaded");
 
 const rawText = document.getElementById("rawTextEntry");
 const submitButton = document.getElementById("submitButton");
 
 submitButton.addEventListener("click", () => {
   console.log(wrap72(rawText.value));
+  copyToClipboard();
+
 });
 
+
+
+/*
+  Wraps text to 72 characters per line
+  preserves newlines and whitespace
+*/
 function wrap72(text) {
   const MAX_COL = 72;
 
-  // maintains use created new lines
-  const paragraphs = text.replace(/\r\n/g, "\n").split("\n");
+  //unnesary conversion commented out
+  //const pagraphs = text.replace(/\r\n/g, "\n").split("\n");
 
-  const wrapped = paragraphs.map(par => {
-    // maintains empty lines
-    if (par.trim().length === 0) return "";
+  //array of paragraphs, split by newlines
+  const pagraphs = text.split("\n");
 
-    //spits the paragraphs into array of strings
-    const tokens = par.split(/(\s+)/); 
-    
+  //loops through each paragraph and wraps it to 72 characters
+  const wrapped = pagraphs.map(p => {
+    // keep empty lines, .trim removes leading and trtailing whitespace
+    if (p.trim().length === 0) return "";
+
+    //split paragraph into words and whitespace, keeps whitespace in the array
+    const chars = p.split(/(\s+)/); 
+
     let lines = [];
     let line = "";
 
-    //loops through the paragraphs
-    for (let tok of tokens) {
-      if (tok === "") continue;
+    for (let char of chars) {
+      //skip empty strings, shouldnt happen. 
+      if (char === "") continue;
 
-      // If adding this token exceeds 72 chars, push current line
-      if (line.length + tok.length > MAX_COL && line.trim().length > 0) {
+      // If adding this char
+      // en exceeds 72 chars, push current line
+      if (line.length + char.length > MAX_COL && line.trim().length > 0) {
         lines.push(line);
-        line = tok.replace(/^\s+/, ""); // avoid leading spaces
+        line = char
+        .replace(/^\s+/, ""); // avoid leading spaces
       } else {
-        line += tok;
+        line += char
+        ;
       }
     }
 
@@ -40,7 +55,17 @@ function wrap72(text) {
 
     return lines.join("\n");
   });
+  //join the wrapped paragraphs with newlines
   const formattedText = wrapped.join("\n");
+
+  //replaces the text in the textarea with the formatted text
   rawText.value = formattedText;
   return formattedText;
+}
+
+function copyToClipboard() {
+  const textArea = document.getElementById("rawTextEntry");
+  textArea.select();
+  document.execCommand("copy");
+  console.log("Text copied to clipboard!");
 }

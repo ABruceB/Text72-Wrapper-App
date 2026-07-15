@@ -1,6 +1,18 @@
 #rawTextEntry {
-    width: 60%;
     height: 250px;
     font-family: monospace;
-    white-space: pre; /* respect inserted \n */
+    white-space: pre-wrap; /* no scrolling in text area */
   }
+  .container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  #submitButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
